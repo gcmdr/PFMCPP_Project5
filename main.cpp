@@ -254,11 +254,9 @@ float Military::spendMoney (std::string Contract, float expense)
         std::cout << "Not enough money to fulfill contract." << std::endl;
         return budget;
     }
-    else
-    {
-        std::cout << "Contract " << Contract << " approved." << std::endl;
-        return budget - expense;
-    }
+
+    std::cout << "Contract " << Contract << " approved." << std::endl;
+    return budget - expense;
 }
     
 void Military::defend (int numEnemySoldiers)
