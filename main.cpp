@@ -105,16 +105,20 @@ struct StereoSystem
         void fastForward(bool end, int lengthOfTime);
         std::string getTitle();
         void splice(int lengthOfSplice);
+        void printDetailedMemberInfo();
     };
 
     void playMusic(std::string album, int track);
     void boostBass(int bassBoostAmount = 5);
     Tape dubTapes(Tape tape1);
     void destroyTheBass();
+    void printDetailedMemberInfo();
 
     Tape originalTape;
 };
 
+
+    
 StereoSystem::StereoSystem() : 
 numEQBands(5),
 subOn(false),
@@ -131,6 +135,11 @@ positionInMinutes(0)
 {
     std::cout << "StereoSystem::Tape ctor" << std::endl;
 }
+
+void StereoSystem::printDetailedMemberInfo()
+{
+    std::cout << "st1 numAnalogInputs: " << this->numAnalogInputs << " and st1 numDigitalInputs: " << this->numDigitalInputs << std::endl; 
+}       
 
 void StereoSystem::playMusic(std::string album, int track)
 {
@@ -166,6 +175,11 @@ StereoSystem::Tape StereoSystem::dubTapes(Tape tape1)
     tape1.tapeName += " dub";
     std::cout << "StereoSystem::Tape  tapeQuality = " << tape1.quality << std::endl; 
     return tape1;
+}
+
+void StereoSystem::Tape::printDetailedMemberInfo()
+{
+    std::cout << "tp1 type: " << this->type << " and tp1 getTitle(): " << this->getTitle() << std::endl; 
 }
 
 void StereoSystem::Tape::rewind(bool beginning, int lengthOfTime)
@@ -244,12 +258,15 @@ struct Military
         int yearsExperience;
         std::string rank = "corporal";
 
+        void printDetailedMemberInfo();
         bool readyForCombat(float requiredWeight, int requiredExperience);
         void constructShelter(int numberOfSoldiers, std::string weatherConditions = "cloudy");
         void skillsAndRank(std::string mainSkill, std::string rank);
         float weightGainFromPushups(int numberOfPushups);
+        
     };
 
+    void printDetailedMemberInfo();
     float spendMoney(std::string Contract, float budget=10000000.57f);
     void defend(int numEnemySoldiers);
     bool invade(int numEnemySoldiers, int numEnemyBases);
@@ -271,6 +288,11 @@ mainSkill("munitions"),
 yearsExperience(5)
 {
     std::cout << "Military::Soldier ctor" << std::endl;
+}
+
+void Military::printDetailedMemberInfo()
+{
+    std::cout << "mt numBases: " << this->numBases << " and mt numSoldiers: " <<this->numSoldiers << std::endl; 
 }
 
 float Military::spendMoney (std::string Contract, float expense)
@@ -332,6 +354,11 @@ int Military::catch22(int bombs)
     return basesDestroyed;
 }
 
+void Military::Soldier::printDetailedMemberInfo()
+{
+    std::cout << "soldier mainSkill: " << this->mainSkill << " and soldier yearsExperience: " << this->yearsExperience << std::endl; 
+}
+
 void Military::Soldier::constructShelter(int numberOfSoldiers, std::string weatherConditions)
 {
     std::cout << "Construct shelter for: " << numberOfSoldiers <<  " soldiers." << std::endl;
@@ -376,6 +403,7 @@ struct Plane
     double currentWeight = 0;
     float fuelLevel = 5000;
     
+    void printDetailedMemberInfo();
     bool transportCargo(double parcelWeight);
     float sellAlcohol(int totalDrinks, float drinkPrice);
     void fly(int flightTime, float engineThrust, bool clearRunway = true);
@@ -387,6 +415,11 @@ numSeats(240),
 typeOfEngine("turboprop")
 {
     std::cout << "Plane ctor" << std::endl;
+}
+
+void Plane::printDetailedMemberInfo()
+{
+    std::cout << "pl1 typeOfEngine: " << this->typeOfEngine << " and pl1 cargoCapacity: " << this->cargoCapacity << std::endl; 
 }
 
 bool Plane::transportCargo(double parcelWeight)
@@ -568,6 +601,26 @@ int main()
     CargoShipment cgo;
     cgo.getStereoInfo(st1);
     cgo.readyForFlight(pl2);
+
+    // StereoSystem
+    std::cout << "st1 numAnalogInputs: " << st1.numAnalogInputs << " and st1 numDigitalInputs: " << st1.numDigitalInputs << std::endl; 
+    st1.printDetailedMemberInfo();
+
+    // Tape
+    std::cout << "tp1 type: " << tp1.type << " and tp1 getTitle(): " << tp1.getTitle() << std::endl; 
+    tp1.printDetailedMemberInfo();
+
+    // Military
+    std::cout << "mt numBases: " << mt.numBases << " and mt numSoldiers: " << mt.numSoldiers << std::endl; 
+    mt.printDetailedMemberInfo();
+
+    // Soldier
+    std::cout << "soldier mainSkill: " << soldier.mainSkill << " and soldier yearsExperience: " << soldier.yearsExperience << std::endl; 
+    soldier.printDetailedMemberInfo();
+
+    // Plane
+    std::cout << "pl1 typeOfEngine: " << pl1.typeOfEngine << " and pl1 cargoCapacity: " << pl1.cargoCapacity << std::endl; 
+    pl1.printDetailedMemberInfo();
 
     std::cout << "good to go!" << std::endl;
 }
