@@ -130,7 +130,6 @@ struct StereoWrapper
     }
 
     StereoSystem* stPtr = nullptr;
-    JUCE_LEAK_DETECTOR(StereoWrapper)
 };
     
 StereoSystem::StereoSystem() : 
@@ -299,7 +298,6 @@ struct MilitaryWrapper
     }
 
     Military* mtPtr = nullptr;
-    JUCE_LEAK_DETECTOR(MilitaryWrapper)
 };
 
 Military::Military() : 
@@ -447,7 +445,6 @@ struct PlaneWrapper
     }
 
     Plane* plPtr = nullptr;
-    JUCE_LEAK_DETECTOR(PlaneWrapper)
 };
 
 
@@ -531,7 +528,6 @@ struct MilitaryTransportWrapper
     }
 
     MilitaryTransport* mtTranPtr = nullptr;
-    JUCE_LEAK_DETECTOR(MilitaryTransportWrapper)
 };
 
 MilitaryTransport::MilitaryTransport()
@@ -581,7 +577,6 @@ struct CargoShipmentWrapper
     }
 
     CargoShipment* cgPtr;
-    JUCE_LEAK_DETECTOR(CargoShipmentWrapper)
 };
 
 CargoShipment::CargoShipment()
