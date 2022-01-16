@@ -1,3 +1,5 @@
+#include <iostream>
+#include "LeakedObjectDetector.h"
 /*
  Project 5: Part 3 / 4
  video: Chapter 3 Part 4: 
@@ -111,14 +113,24 @@ struct StereoSystem
 
     void playMusic(std::string album, int track);
     void boostBass(int bassBoostAmount = 5);
-    Tape dubTapes(Tape tape1);
+    Tape dubTapes(Tape& tape1);
     void destroyTheBass();
     void printDetailedMemberInfo();
 
     Tape originalTape;
+    JUCE_LEAK_DETECTOR(StereoSystem)
 };
 
+struct StereoWrapper 
+{
+    StereoWrapper(StereoSystem* stereo) : stPtr(stereo) {}
+    ~StereoWrapper()
+    {
+        delete stPtr;
+    }
 
+    StereoSystem* stPtr = nullptr;
+};
     
 StereoSystem::StereoSystem() : 
 numEQBands(5),
@@ -170,7 +182,7 @@ void StereoSystem::destroyTheBass()
     std::cout << "Bass has been destroyed, bass level is now: " << bassLevel << std::endl;
 }
 
-StereoSystem::Tape StereoSystem::dubTapes(Tape tape1)
+StereoSystem::Tape StereoSystem::dubTapes(Tape& tape1)
 {
     tape1.quality *= 0.9f;
     tape1.tapeName += " dub";
@@ -274,6 +286,18 @@ struct Military
     int catch22(int numBombs);
 
     Soldier soldier1;
+    JUCE_LEAK_DETECTOR(Military)
+};
+
+struct MilitaryWrapper
+{
+    MilitaryWrapper(Military* military) : mtPtr(military) {}
+    ~MilitaryWrapper()
+    {
+        delete mtPtr;
+    }
+
+    Military* mtPtr = nullptr;
 };
 
 Military::Military() : 
@@ -409,7 +433,20 @@ struct Plane
     float sellAlcohol(int totalDrinks, float drinkPrice);
     void fly(int flightTime, float engineThrust, bool clearRunway = true);
     void cleanSeats(int numSeatsToClean);
+    JUCE_LEAK_DETECTOR(Plane)
 };
+
+struct PlaneWrapper
+{
+    PlaneWrapper(Plane* plane) : plPtr(plane) {}
+    ~PlaneWrapper()
+    {
+        delete plPtr;
+    }
+
+    Plane* plPtr = nullptr;
+};
+
 
 Plane::Plane() :
 numSeats(240),
@@ -477,8 +514,20 @@ struct MilitaryTransport
     Military newArmy;
     Plane armyPlane;
 
-    int getPassengers(Military newArmy);
-    bool enoughSeats(Military newArmy, Plane armyPlane);
+    int getPassengers(const Military& newArmy);
+    bool enoughSeats(const Military& newArmy, const Plane& armyPlane);
+    JUCE_LEAK_DETECTOR(MilitaryTransport)
+};
+
+struct MilitaryTransportWrapper
+{
+    MilitaryTransportWrapper(MilitaryTransport* militaryTransport) : mtTranPtr(militaryTransport) {}
+    ~MilitaryTransportWrapper()
+    {
+        delete mtTranPtr;
+    }
+
+    MilitaryTransport* mtTranPtr = nullptr;
 };
 
 MilitaryTransport::MilitaryTransport()
@@ -486,12 +535,12 @@ MilitaryTransport::MilitaryTransport()
     std::cout << "MilitaryTransport ctor" << std::endl;
 }
 
-int MilitaryTransport::getPassengers(Military army)
+int MilitaryTransport::getPassengers(const Military& army)
 {
     return army.numSoldiers;
 }
 
-bool MilitaryTransport::enoughSeats(Military army, Plane plane)
+bool MilitaryTransport::enoughSeats(const Military& army, const Plane& plane)
 {
     if(army.numSoldiers > plane.numSeats)
         return false;
@@ -514,8 +563,20 @@ struct CargoShipment
     StereoSystem st1;
     Plane musicPlane;
 
-    void getStereoInfo(StereoSystem st1);
-    bool readyForFlight(Plane musicPlane);
+    void getStereoInfo(const StereoSystem& st1);
+    bool readyForFlight(const Plane& musicPlane);
+    JUCE_LEAK_DETECTOR(CargoShipment)
+};
+
+struct CargoShipmentWrapper
+{
+    CargoShipmentWrapper(CargoShipment* cargoShipment) : cgPtr(cargoShipment) {}
+    ~CargoShipmentWrapper()
+    {
+        delete cgPtr;
+    }
+
+    CargoShipment* cgPtr;
 };
 
 CargoShipment::CargoShipment()
@@ -523,7 +584,7 @@ CargoShipment::CargoShipment()
     std::cout << "CargoShipment ctor" << std::endl;
 }
 
-void CargoShipment::getStereoInfo(StereoSystem stereo)
+void CargoShipment::getStereoInfo(const StereoSystem& stereo)
 {
     std::cout << "numSpeakers: " << stereo.numSpeakers << std::endl;
     std::cout << "wattsOfPower = " << stereo.wattsOfPower << std::endl;
@@ -531,7 +592,7 @@ void CargoShipment::getStereoInfo(StereoSystem stereo)
     std::cout << "numDigitalInputs = " << stereo.numDigitalInputs << std::endl;
 } 
 
-bool CargoShipment::readyForFlight(Plane plane)
+bool CargoShipment::readyForFlight(const Plane& plane)
 {
     if (plane.fuelLevel > 3000.0f)
         return true;
@@ -555,20 +616,23 @@ bool CargoShipment::readyForFlight(Plane plane)
 
 int main()
 {
+    // Wrapper instantiations
+    StereoWrapper stWrap( new StereoSystem() );
+    MilitaryWrapper mtWrap( new Military() );
+    PlaneWrapper plWrap( new Plane() );
+    MilitaryTransportWrapper mtTranWrap( new MilitaryTransport() );
+    CargoShipmentWrapper cgWrap( new CargoShipment() );
+    
     // Instantiations
-    StereoSystem st1;
     StereoSystem::Tape tp1;
     StereoSystem::Tape tp2;
-    Military mt;
     Military::Soldier soldier;
-    Plane pl1;
-    Plane pl2;
-
+    
     // StereoSystem
-    st1.playMusic("Remedy Lane", 1);
-    st1.boostBass(7);
-    st1.dubTapes(tp2);
-    st1.destroyTheBass();
+    stWrap.stPtr->playMusic("Remedy Lane", 1);
+    stWrap.stPtr->boostBass(7);
+    stWrap.stPtr->dubTapes(tp2);
+    stWrap.stPtr->destroyTheBass();
 
     // Tape
     tp1.rewind(false, 50);
@@ -577,10 +641,10 @@ int main()
     tp1.splice(27);
 
     // Military
-    mt.spendMoney ("Contract 007", 50000000.57f);
-    mt.defend (7256);
-    mt.invade (234676,7);
-    mt.catch22(28);
+    mtWrap.mtPtr->spendMoney ("Contract 007", 50000000.57f);
+    mtWrap.mtPtr->defend (7256);
+    mtWrap.mtPtr->invade (234676,7);
+    mtWrap.mtPtr->catch22(28);
 
     // Soldier
     soldier.readyForCombat(160.4f, 4);
@@ -589,39 +653,37 @@ int main()
     soldier.weightGainFromPushups(200);
 
     // Plane
-    pl1.transportCargo(175.3);
-    pl1.sellAlcohol(8, 4.99f);
-    pl1.fly(127, 5000.0f, true);
-    pl1.cleanSeats(234);
+    plWrap.plPtr->transportCargo(175.3);
+    plWrap.plPtr->sellAlcohol(8, 4.99f);
+    plWrap.plPtr->fly(127, 5000.0f, true);
+    plWrap.plPtr->cleanSeats(234);
 
     // New UDTs
-    MilitaryTransport mtr;
-    mtr.getPassengers(mt);
-    mtr.enoughSeats(mt, pl1);
+    mtTranWrap.mtTranPtr->getPassengers(*mtWrap.mtPtr);
+    mtTranWrap.mtTranPtr->enoughSeats(*mtWrap.mtPtr, *plWrap.plPtr);
 
-    CargoShipment cgo;
-    cgo.getStereoInfo(st1);
-    cgo.readyForFlight(pl2);
+    cgWrap.cgPtr->getStereoInfo(*stWrap.stPtr);
+    cgWrap.cgPtr->readyForFlight(*plWrap.plPtr);
 
     // StereoSystem
-    std::cout << "st1 numAnalogInputs: " << st1.numAnalogInputs << " and st1 numDigitalInputs: " << st1.numDigitalInputs << std::endl; 
-    st1.printDetailedMemberInfo();
+    std::cout << "st1 numAnalogInputs: " << stWrap.stPtr->numAnalogInputs << " and st1 numDigitalInputs: " << stWrap.stPtr->numDigitalInputs << std::endl; 
+    stWrap.stPtr->printDetailedMemberInfo();
 
     // Tape
     std::cout << "tp1 type: " << tp1.type << " and tp1 getTitle(): " << tp1.getTitle() << std::endl; 
     tp1.printDetailedMemberInfo();
 
     // Military
-    std::cout << "mt numBases: " << mt.numBases << " and mt numSoldiers: " << mt.numSoldiers << std::endl; 
-    mt.printDetailedMemberInfo();
+    std::cout << "mt numBases: " << mtWrap.mtPtr->numBases << " and mt numSoldiers: " << mtWrap.mtPtr->numSoldiers << std::endl; 
+    mtWrap.mtPtr->printDetailedMemberInfo();
 
     // Soldier
     std::cout << "soldier mainSkill: " << soldier.mainSkill << " and soldier yearsExperience: " << soldier.yearsExperience << std::endl; 
     soldier.printDetailedMemberInfo();
 
     // Plane
-    std::cout << "pl1 typeOfEngine: " << pl1.typeOfEngine << " and pl1 cargoCapacity: " << pl1.cargoCapacity << std::endl; 
-    pl1.printDetailedMemberInfo();
+    std::cout << "pl1 typeOfEngine: " << plWrap.plPtr->typeOfEngine << " and pl1 cargoCapacity: " << plWrap.plPtr->cargoCapacity << std::endl; 
+    plWrap.plPtr->printDetailedMemberInfo();
 
     std::cout << "good to go!" << std::endl;
 }
