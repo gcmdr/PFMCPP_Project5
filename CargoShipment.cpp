@@ -28,8 +28,5 @@ void CargoShipment::getStereoInfo(const StereoSystem& stereo)
 
 bool CargoShipment::readyForFlight(const Plane& plane)
 {
-    if (plane.fuelLevel > 3000.0f)
-        return true;
-
-    return false;
+    return plane.fuelLevel > 3000.f;
 }

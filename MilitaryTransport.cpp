@@ -11,10 +11,10 @@ MilitaryTransport::MilitaryTransport(Military& military_, Plane& plane_) :
 }
 
 MilitaryTransport::~MilitaryTransport()
-    {
-        std::cout << "MilitaryTransport dtor" << std::endl;
-        newArmy.defend(127);
-    }
+{
+    std::cout << "MilitaryTransport dtor" << std::endl;
+    newArmy.defend(127);
+}
 
 int MilitaryTransport::getPassengers(const Military& army)
 {
@@ -23,8 +23,5 @@ int MilitaryTransport::getPassengers(const Military& army)
 
 bool MilitaryTransport::enoughSeats(const Military& army, const Plane& plane)
 {
-    if(army.numSoldiers > plane.numSeats)
-        return false;
-    
-    return true;
+    return army.numSoldiers > plane.numSeats;
 }

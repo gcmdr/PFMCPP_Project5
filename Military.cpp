@@ -8,9 +8,9 @@ Military::Military() :
 }
 
 Military::~Military()
-    {
-        std::cout << "Military dtor" << std::endl;
-    }
+{
+    std::cout << "Military dtor" << std::endl;
+}
 
 Military::Soldier::Soldier() :
     weight(185.0f),
