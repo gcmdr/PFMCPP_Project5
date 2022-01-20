@@ -1,56 +1,45 @@
-
+struct StereoSystem;
+struct Military;
+struct Plane;
+struct MilitaryTransport;
+struct CargoShipment;
 
 struct StereoWrapper 
 {
-    StereoWrapper(StereoSystem* stereo) : stPtr(stereo) {}
-    ~StereoWrapper()
-    {
-        delete stPtr;
-    }
+    StereoWrapper(StereoSystem* stereo);
+    ~StereoWrapper();
 
     StereoSystem* stPtr = nullptr;
 };
 
 struct MilitaryWrapper
 {
-    MilitaryWrapper(Military* military) : mtPtr(military) {}
-    ~MilitaryWrapper()
-    {
-        delete mtPtr;
-    }
+    MilitaryWrapper(Military* military);
+    ~MilitaryWrapper();
 
     Military* mtPtr = nullptr;
 };
 
 struct PlaneWrapper
 {
-    PlaneWrapper(Plane* plane) : plPtr(plane) {}
-    ~PlaneWrapper()
-    {
-        delete plPtr;
-    }
+    PlaneWrapper(Plane* plane);
+    ~PlaneWrapper();
 
     Plane* plPtr = nullptr;
 };
 
 struct MilitaryTransportWrapper
 {
-    MilitaryTransportWrapper(MilitaryTransport* militaryTransport) : mtTranPtr(militaryTransport) {}
-    ~MilitaryTransportWrapper()
-    {
-        delete mtTranPtr;
-    }
-
+    MilitaryTransportWrapper(MilitaryTransport* militaryTransport);
+    ~MilitaryTransportWrapper();
+    
     MilitaryTransport* mtTranPtr = nullptr;
 };
 
 struct CargoShipmentWrapper
 {
-    CargoShipmentWrapper(CargoShipment* cargoShipment) : cgPtr(cargoShipment) {}
-    ~CargoShipmentWrapper()
-    {
-        delete cgPtr;
-    }
+    CargoShipmentWrapper(CargoShipment* cargoShipment);
+    ~CargoShipmentWrapper();
 
     CargoShipment* cgPtr;
 };

@@ -1,19 +1,28 @@
 #include "Military.h"
 
-
 Military::Military() : 
-branchOfMilitary("Navy"),
-numBases(127)
+    branchOfMilitary("Navy"),
+    numBases(127)
 {
     std::cout << "Military ctor" << std::endl;
 }
 
+Military::~Military()
+    {
+        std::cout << "Military dtor" << std::endl;
+    }
+
 Military::Soldier::Soldier() :
-weight(185.0f),
-mainSkill("munitions"),
-yearsExperience(5)
+    weight(185.0f),
+    mainSkill("munitions"),
+    yearsExperience(5)
 {
     std::cout << "Military::Soldier ctor" << std::endl;
+}
+
+Military::Soldier::~Soldier()
+{
+    std::cout << "Soldier dtor" << std::endl;
 }
 
 void Military::printDetailedMemberInfo()

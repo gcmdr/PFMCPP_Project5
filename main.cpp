@@ -45,6 +45,12 @@
  Wait for my code review.
  */
 
+#include "Wrappers.h"
+#include "Plane.h"
+#include "CargoShipment.h"
+#include "MilitaryTransport.h"
+#include "StereoSystem.h"
+#include "Military.h"
 
 int main()
 {

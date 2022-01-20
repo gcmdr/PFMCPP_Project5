@@ -3,10 +3,8 @@
 struct Military
 {
     Military();
-    ~Military()
-    {
-        std::cout << "Military dtor" << std::endl;
-    }
+    ~Military();
+    
     std::string branchOfMilitary;
     int numBases;
     int numSoldiers = 5000;
@@ -16,10 +14,8 @@ struct Military
     struct Soldier
     {
         Soldier();
-        ~Soldier()
-        {
-            std::cout << "Soldier dtor" << std::endl;
-        }
+        ~Soldier();
+
         float height = 60.2f;
         float weight;
         std::string mainSkill;
