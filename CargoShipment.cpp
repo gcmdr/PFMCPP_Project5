@@ -4,9 +4,7 @@
 #include <iostream>
 
 
-CargoShipment::CargoShipment(StereoSystem& st_, Plane& plane_) :
-    st1(&st_),
-    musicPlane(&plane_)
+CargoShipment::CargoShipment() 
 {
     
     std::cout << "CargoShipment ctor" << std::endl;

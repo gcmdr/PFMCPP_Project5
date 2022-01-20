@@ -1,4 +1,5 @@
 #include <iostream>
+#include "LeakedObjectDetector.h"
 
 struct Military
 {

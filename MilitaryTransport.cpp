@@ -2,9 +2,8 @@
 #include "Military.h"
 #include "Plane.h"
 
-MilitaryTransport::MilitaryTransport(Military& military_, Plane& plane_) : 
-    newArmy(&military_),
-    armyPlane(&plane_)
+MilitaryTransport::MilitaryTransport()
+    
 {
     std::cout << "MilitaryTransport ctor" << std::endl;
 }

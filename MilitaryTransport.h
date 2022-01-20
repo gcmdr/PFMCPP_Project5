@@ -1,11 +1,12 @@
-#include <iostream>
+#include "LeakedObjectDetector.h"
 
 struct Military;
 struct Plane;
 
 struct MilitaryTransport
 {
-    MilitaryTransport(Military& military_, Plane& plane_);
+    // MilitaryTransport(Military& military_, Plane& plane_);
+    MilitaryTransport();
     ~MilitaryTransport();
 
     Military* newArmy;

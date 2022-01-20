@@ -60,6 +60,8 @@ int main()
     PlaneWrapper plWrap( new Plane() );
     MilitaryTransportWrapper mtTranWrap( new MilitaryTransport() );
     CargoShipmentWrapper cgWrap( new CargoShipment() );
+    //MilitaryTransportWrapper mtTranWrap( new MilitaryTransport(Military& mt_, Plane& pl_) );
+    //CargoShipmentWrapper cgWrap( new CargoShipment(StereoSystem& st_, Plane& plane_) );
     
     // Instantiations
     StereoSystem::Tape tp1;

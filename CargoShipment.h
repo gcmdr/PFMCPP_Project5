@@ -1,9 +1,11 @@
+#include "LeakedObjectDetector.h"
+
 struct StereoSystem;
 struct Plane;
 
 struct CargoShipment
 {
-    CargoShipment(StereoSystem& stl, Plane& musicPlane);
+    CargoShipment();
     ~CargoShipment();
     
     StereoSystem* st1 = nullptr;

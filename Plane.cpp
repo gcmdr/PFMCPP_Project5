@@ -7,6 +7,11 @@ typeOfEngine("turboprop")
     std::cout << "Plane ctor" << std::endl;
 }
 
+Plane::~Plane()
+{
+    std::cout << "Plane dtor" << std::endl;
+}
+
 void Plane::printDetailedMemberInfo()
 {
     std::cout << "pl1 typeOfEngine: " << this->typeOfEngine << " and pl1 cargoCapacity: " << this->cargoCapacity << std::endl; 

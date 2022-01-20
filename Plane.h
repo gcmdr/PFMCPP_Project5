@@ -1,12 +1,11 @@
 #include <iostream>
+#include "LeakedObjectDetector.h"
 
 struct Plane
 {
     Plane();
-    ~Plane()
-    {
-        std::cout << "Plane dtor" << std::endl;
-    }
+    ~Plane();
+    
     int numSeats;
     std::string typeOfEngine;
     double cargoCapacity = 5000;
