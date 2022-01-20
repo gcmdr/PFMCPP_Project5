@@ -17,6 +17,11 @@ positionInMinutes(0)
     std::cout << "StereoSystem::Tape ctor" << std::endl;
 }
 
+StereoSystem::Tape::~Tape()
+{
+    std::cout << "Tape dtor" << std::endl;
+}
+
 void StereoSystem::printDetailedMemberInfo()
 {
     std::cout << "st1 numAnalogInputs: " << this->numAnalogInputs << " and st1 numDigitalInputs: " << this->numDigitalInputs << std::endl; 

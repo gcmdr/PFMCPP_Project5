@@ -54,14 +54,16 @@
 
 int main()
 {
+    Military mt_;
+    StereoSystem st_;
+    Plane pl_;
+    
     // Wrapper instantiations
     StereoWrapper stWrap( new StereoSystem() );
     MilitaryWrapper mtWrap( new Military() );
     PlaneWrapper plWrap( new Plane() );
-    MilitaryTransportWrapper mtTranWrap( new MilitaryTransport() );
-    CargoShipmentWrapper cgWrap( new CargoShipment() );
-    //MilitaryTransportWrapper mtTranWrap( new MilitaryTransport(Military& mt_, Plane& pl_) );
-    //CargoShipmentWrapper cgWrap( new CargoShipment(StereoSystem& st_, Plane& plane_) );
+    MilitaryTransportWrapper mtTranWrap( new MilitaryTransport(mt_, pl_) );
+    CargoShipmentWrapper cgWrap( new CargoShipment(st_, pl_) );
     
     // Instantiations
     StereoSystem::Tape tp1;

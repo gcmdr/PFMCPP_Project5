@@ -20,10 +20,8 @@ struct StereoSystem
     struct Tape
     {
         Tape();
-        ~Tape()
-        {
-            std::cout << "Tape dtor" << std::endl;
-        }
+        ~Tape();
+        
         std::string tapeName = "mix";
         std::string type = "chrome bias";
         float quality;
