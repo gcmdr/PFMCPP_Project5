@@ -1,3 +1,4 @@
+#pragma once
 struct StereoSystem;
 struct Military;
 struct Plane;
