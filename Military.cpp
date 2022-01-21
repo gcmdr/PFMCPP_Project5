@@ -63,12 +63,12 @@ void Military::defend (int numEnemySoldiers)
 
 bool Military::invade (int numEnemySoldiers, int numEnemyBases)
 {
-    return (numEnemyBases > numBases || numEnemySoldiers > numSoldiers);
+    return (!(numEnemyBases > numBases || numEnemySoldiers > numSoldiers));
 }
 
 bool Military::Soldier::readyForCombat(float requiredWeight, int requiredExperience)
 {
-    return (weight > requiredWeight || yearsExperience < requiredExperience);
+    return (!(weight > requiredWeight || yearsExperience < requiredExperience));
 }
 
 int Military::catch22(int bombs)
