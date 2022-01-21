@@ -5,7 +5,6 @@
 MilitaryTransport::MilitaryTransport(Military& military_, Plane& plane_) :
     newArmy(military_),
     armyPlane(plane_)
-    
 {
     std::cout << "MilitaryTransport ctor" << std::endl;
 }

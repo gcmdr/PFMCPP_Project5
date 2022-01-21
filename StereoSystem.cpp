@@ -1,18 +1,23 @@
 #include "StereoSystem.h"
 
 StereoSystem::StereoSystem() : 
-numEQBands(5),
-subOn(false),
-maxBassLevel(10),
-bassLevel(0)
+    numEQBands(5),
+    subOn(false),
+    maxBassLevel(10),
+    bassLevel(0)
 {
     std::cout << "StereoSystem ctor" << std::endl;
 }
 
+StereoSystem::~StereoSystem()
+{
+    std::cout << "StereoSystem dtor" << std::endl;
+}
+
 StereoSystem::Tape::Tape() : 
-quality(1.0f),
-minPerSide(30),
-positionInMinutes(0)
+    quality(1.0f),
+    minPerSide(30),
+    positionInMinutes(0)
 {
     std::cout << "StereoSystem::Tape ctor" << std::endl;
 }
@@ -42,6 +47,7 @@ void StereoSystem::boostBass(int bassBoostAmount)
         bassLevel = maxBassLevel;
     else 
         bassLevel += bassBoostAmount;
+        
     std::cout << "Watts of power = " << wattsOfPower << std::endl; 
     std::cout << "StereoSystem::boostBass  basslevel = " << bassLevel << std::endl; 
 }

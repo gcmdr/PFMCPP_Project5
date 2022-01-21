@@ -5,10 +5,8 @@
 struct StereoSystem
 {
     StereoSystem();
-    ~StereoSystem()
-    {
-        std::cout << "StereoSystem dtor" << std::endl;
-    }
+    ~StereoSystem();
+    
     int numSpeakers = 2;
     float wattsOfPower = 60.0f;
     int numAnalogInputs = 2;

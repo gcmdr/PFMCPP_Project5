@@ -7,21 +7,20 @@
 #include "MilitaryTransport.h"
 
 StereoWrapper::StereoWrapper(StereoSystem* stereo) : stPtr(stereo) {}
+
 StereoWrapper::~StereoWrapper()
 {
     delete stPtr;
 }
 
-MilitaryWrapper::MilitaryWrapper(Military* military) : 
-    mtPtr(military) {}
+MilitaryWrapper::MilitaryWrapper(Military* military) : mtPtr(military) {}
 
 MilitaryWrapper::~MilitaryWrapper()
 {
     delete mtPtr;
 }
 
-PlaneWrapper::PlaneWrapper(Plane* plane) : 
-    plPtr(plane) {}
+PlaneWrapper::PlaneWrapper(Plane* plane) : plPtr(plane) {}
 
 PlaneWrapper::~PlaneWrapper()
 {
@@ -36,8 +35,8 @@ MilitaryTransportWrapper::~MilitaryTransportWrapper()
     delete mtTranPtr;
 }
 
-CargoShipmentWrapper::CargoShipmentWrapper(CargoShipment* cargoShipment) : 
-    cgPtr(cargoShipment) {}
+CargoShipmentWrapper::CargoShipmentWrapper(CargoShipment* cargoShipment) : cgPtr(cargoShipment) {}
+
 CargoShipmentWrapper::~CargoShipmentWrapper()
 {
     delete cgPtr;

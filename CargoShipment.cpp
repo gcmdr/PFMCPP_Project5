@@ -8,15 +8,14 @@ CargoShipment::CargoShipment(StereoSystem& st_, Plane& plane_) :
     st1(st_),
     musicPlane(plane_)
 {
-    
     std::cout << "CargoShipment ctor" << std::endl;
 }
 
 CargoShipment::~CargoShipment()
-    {
-        st1.destroyTheBass();
-        std::cout << "CargoShipment dtor" << std::endl;
-    }
+{
+    st1.destroyTheBass();
+    std::cout << "CargoShipment dtor" << std::endl;
+}
 
 void CargoShipment::getStereoInfo(const StereoSystem& stereo)
 {

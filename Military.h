@@ -29,7 +29,6 @@ struct Military
         void constructShelter(int numberOfSoldiers, std::string weatherConditions = "cloudy");
         void skillsAndRank(std::string mainSkill, std::string rank);
         float weightGainFromPushups(int numberOfPushups);
-        
     };
 
     void printDetailedMemberInfo();

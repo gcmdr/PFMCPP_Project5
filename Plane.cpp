@@ -25,7 +25,6 @@ bool Plane::transportCargo(double parcelWeight)
         
     currentWeight += parcelWeight;
     return true;
-        
 }
 
 void Plane::cleanSeats(int numberOfSeats)
@@ -36,7 +35,6 @@ void Plane::cleanSeats(int numberOfSeats)
         ++numCleanedSeats;
     }
     std::cout << numCleanedSeats << " seats cleaned" << std::endl;
-
 }
 
 float Plane::sellAlcohol(int totalDrinks, float drinkPrice)
